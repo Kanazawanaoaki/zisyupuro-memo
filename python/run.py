@@ -3,6 +3,8 @@ import logging
 import sys
 import time
 
+sys.path.append("../tf-pose-estimation")#ライブラリを使える用にpathを追加
+
 from tf_pose import common
 import cv2
 import numpy as np
