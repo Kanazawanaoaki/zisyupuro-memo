@@ -1,7 +1,7 @@
-(defclass 2d-pose-model
+(defclass 3d-pose-model
   :super cascaded-link
   :slots (torso larm1 larm2 rarm1 rarm2 lleg1 lleg2 rleg1 rleg2 j1 j2 j3 j4 j5 j6 j7 j8))
-(defmethod 2d-pose-model
+(defmethod 3d-pose-model
   (:init ()
    (let (b1 b2 b3)
      (send-super :init)
@@ -105,12 +105,20 @@
                            :axis :y)
                  (instance rotational-joint
                            :init :name 'l-knee :parent-link lleg1 :child-link lleg2
-                           :axis :y)))
+                           :axis :y)
+                 (instance rotational-joint
+                           :init :name 'r-shoulder-z :parent-link torso :child-link rarm1
+			                     :axis :z)
+		             (instance rotational-joint
+			                     :init :name 'l-shoulder-z :parent-link torso :child-link larm1
+			                     :axis :z)
+                           ))
 
      (setq links (list torso rarm1 rarm2 larm1 larm2 rleg1 rleg2 lleg1 lleg2))
      (send self :init-ending)
      self))
 
+  #|
   (:r-shoulder (num)
     (setq angle-now (send self :angle-vector))
     (setq angle-now (float-vector num (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (elt angle-now 7)))
@@ -143,8 +151,11 @@
     (setq angle-now (send self :angle-vector))
     (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) num))
     (send self :angle-vector angle-now))
+  (:r-arm (num)
+	  (setq angle-now (send self :angle-vector))
+  |#
   )
 
-(setq r (instance 2d-pose-model :init))
+(setq r (instance 3d-pose-model :init))
 (objects (list r))
-(send r :angle-vector #f(20 30 -20 -30 40 30 -40 -30))
+(send r :angle-vector #f(20 30 -20 -30 40 30 -40 -30 10 -20))

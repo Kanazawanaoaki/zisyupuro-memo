@@ -105,7 +105,11 @@
                            :axis :y)
                  (instance rotational-joint
                            :init :name 'l-knee :parent-link lleg1 :child-link lleg2
-                           :axis :y)))
+                           :axis :y)
+                 (instance rotational-joint
+                           :init :name 'r-shoulder-z :parent-link torso :child-link rarm1
+
+                           ))
 
      (setq links (list torso rarm1 rarm2 larm1 larm2 rleg1 rleg2 lleg1 lleg2))
      (send self :init-ending)
