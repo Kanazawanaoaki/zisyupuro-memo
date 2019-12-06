@@ -105,7 +105,11 @@
                            :axis :y)
                  (instance rotational-joint
                            :init :name 'l-knee :parent-link lleg1 :child-link lleg2
-                           :axis :y)))
+                           :axis :y)
+                 (instance rotational-joint
+                           :init :name 'r-shoulder-z :parent-link torso :child-link rarm1
+
+                           ))
 
      (setq links (list torso rarm1 rarm2 larm1 larm2 rleg1 rleg2 lleg1 lleg2))
      (send self :init-ending)
@@ -121,11 +125,11 @@
     (send self :angle-vector angle-now))
   (:l-shoulder (num)
     (setq angle-now (send self :angle-vector))
-    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (- num) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (elt angle-now 7)))
+    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) num (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (elt angle-now 7)))
     (send self :angle-vector angle-now))
   (:l-elbow (num)
     (setq angle-now (send self :angle-vector))
-    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (- num) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (elt angle-now 7)))
+    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) num (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (elt angle-now 7)))
     (send self :angle-vector angle-now))
   (:r-hip (num)
     (setq angle-now (send self :angle-vector))
@@ -137,11 +141,11 @@
     (send self :angle-vector angle-now))
   (:l-hip (num)
     (setq angle-now (send self :angle-vector))
-    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (- num) (elt angle-now 7)))
+    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) elt (elt angle-now 7)))
     (send self :angle-vector angle-now))
   (:l-knee (num)
     (setq angle-now (send self :angle-vector))
-    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) (- num)))
+    (setq angle-now (float-vector (elt angle-now 0) (elt angle-now 1) (elt angle-now 2) (elt angle-now 3) (elt angle-now 4) (elt angle-now 5) (elt angle-now 6) num))
     (send self :angle-vector angle-now))
   )
 
