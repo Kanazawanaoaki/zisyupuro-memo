@@ -15,25 +15,25 @@ void loop() {
   Serial.print("start 100\n");
   digitalWrite(Pin1,HIGH);
   digitalWrite(Pin2,LOW);
-  analogWrite(Pwm,100);
+  analogWrite(Pwm,40);
   delay(5000);
   
   Serial.print("200\n");
   digitalWrite(Pin1,HIGH);
   digitalWrite(Pin2,LOW);
-  analogWrite(Pwm,200);
+  analogWrite(Pwm,80);
   delay(5000);
   
   Serial.print("100\n");
   digitalWrite(Pin1,LOW);
   digitalWrite(Pin2,HIGH);
-  analogWrite(Pwm,100);
+  analogWrite(Pwm,40);
   delay(5000);
 
   Serial.print("200\n");
   digitalWrite(Pin1,LOW);
   digitalWrite(Pin2,HIGH);
-  analogWrite(Pwm,200);
+  analogWrite(Pwm,80);
   delay(5000);
 
   Serial.print("free\n");
