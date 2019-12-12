@@ -145,6 +145,7 @@
     (send self :angle-vector angle-now))
   )
 
-(setq r (instance 2d-pose-model :init))
-(objects (list r))
-(send r :angle-vector #f(20 30 -20 -30 40 30 -40 -30))
+(defun 2d-init nil
+  (setq *2d-model* (instance 2d-pose-model :init))
+  (objects (list *2d-model*))
+  (send *2d-model* :angle-vector #f(20 30 -20 -30 40 30 -40 -30)))
