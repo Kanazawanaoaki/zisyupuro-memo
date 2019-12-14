@@ -3,7 +3,7 @@
 (load "pose-model.l")
 
 (ros::roseus-add-msgs "trajectory_msgs")
-(ros::roseus "2d_listener" :anonymous t)
+(ros::roseus "pose_listener_2d" :anonymous t)
 
 (defvar joint-list)
 
@@ -22,7 +22,7 @@
 (defun cb (msg)
   (setq name-list (send msg :joint_names))
   (setq angle-list (send (elt (send msg :points) 0) :positions))
-  (print 2)
+  ;;(print 2)
   (dotimes (i (length name-list)) (change-joint (elt name-list i) (elt angle-list i)))
   ; (dolist (joint joint-list) (change-joint joint))
   )
@@ -33,12 +33,12 @@
 ;;(objects *2d-model*)
 (send *2d-model* :angle-vector #f(20 30 -20 -30 40 30 -40 -30))
 
-(ros::rate 2)
+;;(ros::rate 2)
 (while (ros::ok)
   (objects (list *2d-model*))
   ;;(send *irtviewer* :draw-objects)
   (x::window-main-one)
-  (print 1)
+  ;;(print 1)
   ;;(ros::ros-info "")
   (ros::spin-once)
   (ros::sleep))
