@@ -31,7 +31,7 @@ def calc_angle(x0,y0,x1,y1,x2,y2):
     theta = np.arccos(x/(s*t))
     # print(theta)
 
-    deg = math.degrees(theta)
+    deg = 180 - math.degrees(theta)
     # print(deg)
 
     if cross[2] < 0:
@@ -81,49 +81,56 @@ def cb(msg):
             print "able to calculate angle of r-elbow !"
             r_elbow = calc_angle(xpos_dict["right elbow"],ypos_dict["right elbow"],xpos_dict["right shoulder"],ypos_dict["right shoulder"],xpos_dict["right wrist"],ypos_dict["right wrist"])
             print "r-elbow joint nalge = {0}".format(r_elbow)
+            name_list.append("r-elbow")
+            angle_list.append(r_elbow)
 
         # l-shoulder
         if flag_dict["left shoulder"] == 1 and flag_dict["right shoulder"] == 1 and flag_dict["left elbow"]:
             print "able to calculate angle of l-shoulder !"
             l_shoulder = calc_angle(xpos_dict["left shoulder"],ypos_dict["left shoulder"],xpos_dict["right shoulder"],ypos_dict["right shoulder"],xpos_dict["left elbow"],ypos_dict["left elbow"])
             print "l-shoulder joint nalge = {0}".format(l_shoulder)
+            name_list.append("l-shoulder")
+            angle_list.append(l_shoulder)
 
         # l-elbow
         if flag_dict["left elbow"] == 1 and flag_dict["left shoulder"] == 1 and flag_dict["left wrist"]:
             print "able to calculate angle of l-elbow !"
             l_elbow = calc_angle(xpos_dict["left elbow"],ypos_dict["left elbow"],xpos_dict["left shoulder"],ypos_dict["left shoulder"],xpos_dict["left wrist"],ypos_dict["left wrist"])
             print "l-elbow joint nalge = {0}".format(l_elbow)
+            name_list.append("l-elbow")
+            angle_list.append(l_elbow)
 
         # r-hip-joint
         if flag_dict["right hip"] == 1 and flag_dict["left hip"] == 1 and flag_dict["right knee"]:
             print "able to calculate angle of r-hip-joint !"
             r_hip_joint = calc_angle(xpos_dict["right hip"],ypos_dict["right hip"],xpos_dict["left hip"],ypos_dict["left hip"],xpos_dict["right knee"],ypos_dict["right knee"])
             print "r-hip-joint joint nalge = {0}".format(r_hip_joint)
+            name_list.append("r-hip-joint")
+            angle_list.append(r_hip_joint)
 
         # r-knee
         if flag_dict["right knee"] == 1 and flag_dict["right hip"] == 1 and flag_dict["right ankle"]:
             print "able to calculate angle of r-knee !"
             r_knee = calc_angle(xpos_dict["right knee"],ypos_dict["right knee"],xpos_dict["right hip"],ypos_dict["right hip"],xpos_dict["right ankle"],ypos_dict["right ankle"])
             print "r-knee joint nalge = {0}".format(r_knee)
+            name_list.append("r-knee")
+            angle_list.append(r_knee)
 
         # l-hip-joint
         if flag_dict["left hip"] == 1 and flag_dict["right hip"] == 1 and flag_dict["left knee"]:
             print "able to calculate angle of l-hip-joint !"
             l_hip_joint = calc_angle(xpos_dict["left hip"],ypos_dict["left hip"],xpos_dict["right hip"],ypos_dict["right hip"],xpos_dict["left knee"],ypos_dict["left knee"])
             print "l-hip-joint joint nalge = {0}".format(l_hip_joint)
+            name_list.append("l-hip-joint")
+            angle_list.append(l_hip_joint)
 
         # l-knee
         if flag_dict["left knee"] == 1 and flag_dict["left hip"] == 1 and flag_dict["left ankle"]:
             print "able to calculate angle of l-knee !"
             l_knee = calc_angle(xpos_dict["left knee"],ypos_dict["left knee"],xpos_dict["left hip"],ypos_dict["left hip"],xpos_dict["left ankle"],ypos_dict["left ankle"])
             print "l-knee joint nalge = {0}".format(l_knee)
-
-
-        print len(msg.poses[0].limb_names)
-        print msg.poses[0].limb_names[0]
-        print msg.poses[0].poses[0]
-        print flag_dict[msg.poses[0].limb_names[5]]
-
+            name_list.append("l-knee")
+            angle_list.append(l_knee)
 
         # publish ROS message
         joint_trajectory.joint_names = name_list

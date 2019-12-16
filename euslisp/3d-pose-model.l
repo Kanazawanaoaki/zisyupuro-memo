@@ -142,7 +142,7 @@
   (:l-shoulder (&optional num)
     (send (send self :joint 'l-shoulder) :joint-angle (- num)))
   (:l-elbow (&optional num)
-    (send (send self :joint 'r-shoulder) :joint-angle num))
+    (send (send self :joint 'l-elbow) :joint-angle num))
   (:r-hip (&optional num)
     (send (send self :joint 'r-hip) :joint-angle (- num)))
   (:r-knee (&optional num)

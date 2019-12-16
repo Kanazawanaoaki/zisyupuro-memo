@@ -18,13 +18,13 @@ def send_joint_position():
             pub = rospy.Publisher('/2d_human_joint',JointTrajectory,queue_size=1)
             rospy.sleep(1)
 
-            for i in range(100):
+            for i in range(50):
                 joint_trajectory = JointTrajectory()
                 joint_trajectory.header.stamp = rospy.Time.now()
                 joint_trajectory.joint_names = ['r-shoulder','r-elbow','l-shoulder','l-elbow','r-hip-joint','r-knee','l-hip-joint','l-knee']
 
                 point = JointTrajectoryPoint()
-                point.positions = [-60+i,-20+i,-50+i,-30+i,40,20,40,30]#point_list
+                point.positions = [-60+2*i,-20+2*i,60-2*i,20-2*i,60,30,-60,-30]#point_list
                 joint_trajectory.points.append(point)
                 pub.publish(joint_trajectory)
                 rospy.sleep(1)

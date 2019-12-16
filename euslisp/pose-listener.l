@@ -1,9 +1,9 @@
 #!/usr/bin/env roseus
 
-(load "2d-model.l")
+(load "pose-model.l")
 
 (ros::roseus-add-msgs "trajectory_msgs")
-(ros::roseus "pose_2d_listener" :anonymous t)
+(ros::roseus "pose_listener_2d" :anonymous t)
 
 (defvar joint-list)
 
@@ -13,9 +13,9 @@
   (cond ((equal name "r-elbow") (send *2d-model* :r-elbow angle)))
   (cond ((equal name "l-shoulder") (send *2d-model* :l-shoulder angle)))
   (cond ((equal name "l-elbow") (send *2d-model* :l-elbow angle)))
-  (cond ((equal name "r-hip-joint") (send *2d-model* :r-hip-joint angle)))
+  (cond ((equal name "r-hip-joint") (send *2d-model* :r-hip angle)))
   (cond ((equal name "r-knee") (send *2d-model* :r-knee angle)))
-  (cond ((equal name "l-hip-joint") (send *2d-model* :l-hip-joint angle)))
+  (cond ((equal name "l-hip-joint") (send *2d-model* :l-hip angle)))
   (cond ((equal name "l-knee") (send *2d-model* :l-knee angle)))
   )
 
