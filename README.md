@@ -60,10 +60,24 @@ ArduinoにROS用のスケッチを書き込んで、以下を実行する。ポ�
 rosrun rosserial_python serial_node.py /dev/ttyUSB0
 ```
 
+### video_stream_opencv
+
+~/zishu_ws/src/video_stream_opencv/launchの中にファイルを作って、以下の部分にファイルの絶対パスを入れて実行する
+```xml
+<arg name="video_stream_provider" value="/home/mech-user/Desktop/zisyupuro/zisyupuro-memo/data/movie/Bruno Mars - That’s What I Like (Official Video)-PMivT7MJ41M.mkv" />
+
+```
+
 
 ### 関節角度計算
 pythonで関節の位置から関節角度を計算して/2d_human_jointにpublishするコードを書いた。
 以下で実行をする（lanchファイルを作りたい。）
 ```
 python coral2dpose.py
+```
+
+### 動画のダウンロード
+以下の用にしてYoutubeの動画をダウンロードを出来る。
+```
+youtube-dl [url]
 ```
