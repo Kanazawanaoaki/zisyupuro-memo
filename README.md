@@ -37,7 +37,7 @@ roslaunch coral_usb edgetpu_human_pose_estimator.launch INPUT_IMAGE:=/usb_cam/im
 ```
 以下の用にしてimageの結果を表示する事も出来る。
 ```
-rosrun image_view image_view image:=/edgetpu_human_pose_estimator/output/image /edgetpu_human_detector/output/image
+rosrun image_view image_view image:=/edgetpu_human_pose_estimator/output/image
 ```
 
 ### rosbag
