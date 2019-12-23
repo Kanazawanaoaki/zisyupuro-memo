@@ -14,6 +14,8 @@ def cb(msg):
         flag_dict = {"left shoulder":0,"right shoulder":0,"left elbow":0,"right elbow":0,"left wrist":0,"right wrist":0,"left hip":0,"right hip":0,"left knee":0,"right knee":0,"left ankle":0,"right ankle":0}
         xpos_dict = {"left shoulder":0,"right shoulder":0,"left elbow":0,"right elbow":0,"left wrist":0,"right wrist":0,"left hip":0,"right hip":0,"left knee":0,"right knee":0,"left ankle":0,"right ankle":0}
         ypos_dict = {"left shoulder":0,"right shoulder":0,"left elbow":0,"right elbow":0,"left wrist":0,"right wrist":0,"left hip":0,"right hip":0,"left knee":0,"right knee":0,"left ankle":0,"right ankle":0}
+        score_dict = {"left shoulder":0,"right shoulder":0,"left elbow":0,"right elbow":0,"left wrist":0,"right wrist":0,"left hip":0,"right hip":0,"left knee":0,"right knee":0,"left ankle":0,"right ankle":0}
+
 
         # make list of limb'name from ROS message
         limb_list = msg.poses[0].limb_names
@@ -34,6 +36,7 @@ def cb(msg):
         print len(msg.poses[0].limb_names)
         print msg.poses[0].limb_names[0]
         print msg.poses[0].poses[0]
+        print msg.poses[0].scores[0]
         print flag_dict[msg.poses[0].limb_names[5]]
     except:
         print "no massage!"

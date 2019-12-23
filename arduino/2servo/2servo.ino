@@ -23,6 +23,8 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  servo1.write(0);
+  servo2.write(0);
   if (INIT) return;
   Serial.print("start\n");
   servo1.write(0);

@@ -1,7 +1,7 @@
 #include <Servo.h>
 
 // サーボのピン番号
-const int SERVO_PIN = 8;
+const int SERVO_PIN = 9;
 
 // サーボのインスタンス
 Servo servo;
