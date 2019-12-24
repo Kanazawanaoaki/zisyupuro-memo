@@ -31,7 +31,7 @@
 
 (setq *2d-model* (instance 2d-pose-model :init))
 ;;(objects *2d-model*)
-(send *2d-model* :angle-vector #f(20 30 -20 -30 40 30 -40 -30))
+(send *2d-model* :angle-vector #f(55 45 -55 -45 70 20 -70 -20))
 
 ;;(ros::rate 2)
 (while (ros::ok)
