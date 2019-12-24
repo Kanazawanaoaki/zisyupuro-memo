@@ -1,0 +1,3 @@
+<launch>
+  <include file="$(find video_stream_opencv)/launch/bruno_twil.launch"/>
+</launch>

@@ -1,0 +1,12 @@
+<launch>
+  <arg name="image" default="true"/>
+  <include file="$(find coral_usb)/launch/edgetpu_human_pose_estimator.launch">
+    <arg name="INPUT_IMAGE" value="/usb_cam/image_raw" />
+  </include>
+  <group if="$(arg image)">
+    <node name="image_view_debug_image"
+          pkg="image_view" type="image_view">
+      <remap from="image" to="edgetpu_human_pose_estimator/output/image"/>
+    </node>
+  </group>
+</launch>
