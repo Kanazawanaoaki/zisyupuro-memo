@@ -67,3 +67,29 @@ pythonで関節の位置から関節角度を計算して/2d_human_jointにpubli
 ```
 python coral2dpose.py
 ```
+
+### launch
+launchファイルを作って一気に実行出来るようにした。
+```
+source ~/zishu_ws/devel/setup.bash
+```
+が必要。  
+
+```
+roslaunch zisyupuro 2d_pose.launch
+```
+でeuslipのモデルと、Pythonの関節角度計算のノードを立てられる。  
+
+```
+roslaunch zisyupuro video_coral.launch
+# roslaunch zisyupuro video_coral.launch image:="true"
+```
+で動画からcoralを呼び出せる。
+image:="true"で実行すると認識結果のimageを見ることが出来る。
+
+```
+rosrun usb_cam usb_cam_node
+# 別の端末で
+roslaunch camera_coral.launch
+```
+でusbカメラからバージョンのcoralを実行出来る。こっちはdefaultでimageがtrueになっている。
