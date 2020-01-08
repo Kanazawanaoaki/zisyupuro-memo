@@ -108,3 +108,50 @@ rosrun usb_cam usb_cam_node
 roslaunch camera_coral.launch
 ```
 でusbカメラからバージョンのcoralを実行出来る。こっちはdefaultでimageがtrueになっている。
+
+### Arduinoを使って動かす
+まずスケッチを書き込む。その時にどのポートを使っているかが大切。  
+次にpythonで書いた、スクリプトを走らせる。JointTrajectoryからArduinoに送るバイト列を生成している。  
+```
+rosrun zisyupuro 2dpose_unint.py
+```
+ArduinoでのROSシリアル用のノードを立てる。引数としてポート番号を立てる。  
+```
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+```
+
+
+## Arduinoバージョンのデモをやるには1/8 Ver.
+roscoreを立ち上げる
+```
+roscore
+```
+### lisp&python系
+euslispの人形とそれのためのROSノード、pythonで書いたcoralからのメッセージをJointTrjectoryに変換して送る部分のlaunch
+```
+roslaunch 2d_pose.launch
+```
+### Arduino系
+JointTrajectoryからarduinoに送る8ビットintに変換するpython
+```
+rosrun zisyupuro 2dpose_unint.py
+```
+ArduinoでのROSシリアル用のノードを立てる。引数としてポート番号を立てる。  
+```
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+```
+### Coral系
+実行の手順は  
+まず、usbカメラのノードを立てる。
+```
+rosrun usb_cam usb_cam_node
+```
+次に人の姿勢検知を行うノードを立てる。
+```
+source ~/coral_ws/devel/setup.bash
+roslaunch coral_usb edgetpu_human_pose_estimator.launch INPUT_IMAGE:=/usb_cam/image_raw
+```
+以下の用にしてimageの結果を表示する事も出来る。
+```
+rosrun image_view image_view image:=/edgetpu_human_pose_estimator/output/image
+```
