@@ -14,7 +14,7 @@ ref_list = ["r-shoulder","r-elbow","l-shoulder","l-elbow","r-hip-joint","r-knee"
 max_angle = 179
 min_angle = 1
 
-array = [110,120,70,60,130,120,50,60]
+array = [145,135,35,45,160,110,20,70]
 
 def adj_val(val):
     val = int(round(val)) + 90
