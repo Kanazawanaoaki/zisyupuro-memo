@@ -114,7 +114,7 @@ roscore
 ### lisp&python系
 euslispの人形とそれのためのROSノード、pythonで書いたcoralからのメッセージをJointTrjectoryに変換して送る部分のlaunch
 ```
-roslaunch 2d_pose.launch
+roslaunch zisyupuro 2d_pose.launch
 ```
 ### Arduino系
 JointTrajectoryからarduinoに送る8ビットintに変換するpython
