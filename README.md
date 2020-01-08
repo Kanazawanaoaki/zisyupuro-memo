@@ -109,6 +109,26 @@ roslaunch camera_coral.launch
 ```
 でusbカメラからバージョンのcoralを実行出来る。こっちはdefaultでimageがtrueになっている。
 
+### Kinectのカメラを使う
+以下を実行することで深度カメラの情報を使うことが出来る。ただし、bashrcにexport TURTLEBOT_3D_SENSOR=kinectが必要みたい。
+```
+source ~/catkin_ws/devel/setup.bash
+roslaunch turtlebot_bringup 3dsensor.launch
+```
+更に以下を実行することで画像を見ることも出来る。
+```
+rosrun image_view image_view image:=/camera/rgb/image_raw
+```
+coralを使う時には
+```
+source ~/coral_ws/devel/setup.bash
+roslaunch coral_usb edgetpu_human_pose_estimator.launch INPUT_IMAGE:=/camera/rgb/image_raw
+```
+以下の用にしてimageの結果を表示する事も出来る。
+```
+rosrun image_view image_view image:=/edgetpu_human_pose_estimator/output/image
+```
+
 ### Arduinoを使って動かす
 まずスケッチを書き込む。その時にどのポートを使っているかが大切。  
 次にpythonで書いた、スクリプトを走らせる。JointTrajectoryからArduinoに送るバイト列を生成している。  
@@ -129,7 +149,7 @@ roscore
 ### lisp&python系
 euslispの人形とそれのためのROSノード、pythonで書いたcoralからのメッセージをJointTrjectoryに変換して送る部分のlaunch
 ```
-roslaunch 2d_pose.launch
+roslaunch zisyupuro 2d_pose.launch
 ```
 ### Arduino系
 JointTrajectoryからarduinoに送る8ビットintに変換するpython
