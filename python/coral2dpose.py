@@ -10,9 +10,11 @@ from trajectory_msgs.msg import JointTrajectoryPoint
 
 # referencail list of using limb namse
 ref_list = ["left shoulder","right shoulder","left elbow","right elbow","left wrist","right wrist","left hip","right hip","left knee","right knee","left ankle","right ankle"]
+upper_list = ["left shoulder","right shoulder","left elbow","right elbow","left wrist","right wrist"]
 
 # Threshold of scores
-score_thre = 0.9
+score_thre = 0.5
+score_thre_lower = 0.9
 
 def calc_angle(x0,y0,x1,y1,x2,y2):
 
@@ -64,11 +66,17 @@ def cb(msg):
 
         # get positions of limbs
         for i in range(len(limb_list)):
-            if limb_list[i] in ref_list and msg.poses[0].scores[i] > score_thre:
+            if (limb_list[i] in ref_list) and (msg.poses[0].scores[i] > score_thre) and (limb_list[i] in upper_list or msg.poses[0].scores[i] > score_thre_lower):
                 # print limb_list[i]
                 flag_dict[limb_list[i]] = 1
                 xpos_dict[limb_list[i]] = msg.poses[0].poses[i].position.x
                 ypos_dict[limb_list[i]] = msg.poses[0].poses[i].position.y
+
+        # for i in range(len(limb_list)):
+        #     if limb_list[i] in ref_list and msg.poses[0].scores[i] > score_thre:
+        #         flag_dict[limb_list[i]] = 1
+        #         xpos_dict[limb_list[i]] = msg.poses[0].poses[i].position.x
+        #         ypos_dict[limb_list[i]] = msg.poses[0].poses[i].position.y
 
         # calc jointangle ['r-shoulder','r-elbow','l-shoulder','l-elbow','r-hip-joint','r-knee','l-hip-joint','l-knee']
         # r-shoulder
