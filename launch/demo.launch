@@ -1,0 +1,5 @@
+<launch>
+  <node name="pose_2d_listener" pkg="roseus" type="roseus" args="$(find zisyupuro)/src/zisyupuro-memo/euslisp/2d-listener"/>
+  <node name="coral_listener" pkg="zisyupuro" type="coral2dpose.py"/>
+  <node name="pose_unint" pkg="zisyupuro" type="2dpose_unint.py" />
+</launch>

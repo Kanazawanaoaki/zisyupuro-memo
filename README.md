@@ -160,3 +160,31 @@ roslaunch coral_usb edgetpu_human_pose_estimator.launch INPUT_IMAGE:=/usb_cam/im
 ```
 rosrun image_view image_view image:=/edgetpu_human_pose_estimator/output/image
 ```
+
+## デモの実行方法
+まずはroscore
+```
+roscore
+```
+次にデモ用のlaunchを実行。coralからjoint、jointからeuslisp、jointからarudino用のunint8のノードが立ち上がる。
+```
+roslaunch zisyupuro demo.launch
+```
+ArudinoのROSシリアル用のノードを立てる。ポートの名前にする。
+```
+rosrun rosserial_python serial_node.py /dev/ttyACM0
+```
+Kinect系をやる。
+```
+source ~/catkin_ws/devel/setup.bash
+roslaunch turtlebot_bringup 3dsensor.launch
+```
+（中身の確認）
+```
+rosrun image_view image_view image:=/camera/rgb/image_raw
+```
+Kinectの画像でcoralを読み込むlaunch
+```
+source ~/coral_ws/devel/setup.bash
+roslaunch zisyupuro kinect_coral.launch
+```
